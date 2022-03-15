@@ -4,6 +4,12 @@
 
 namespace Game
 {
+	Game::Game()
+	{	}
+
+	Game::~Game()
+	{	}
+
 	Game::eGameErrors Game::init()
 	{
 		//write load textures names from json or xml for load textures with loop

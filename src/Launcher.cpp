@@ -24,7 +24,7 @@ namespace Game
 					pWindow->close();
 				}
 			}
-			pWindow->clear();
+			pWindow->clear(sf::Color(200, 250, 0));
 			game_obj.draw(*pWindow);
 			pWindow->display();
 		}

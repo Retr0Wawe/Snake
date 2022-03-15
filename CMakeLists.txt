@@ -10,6 +10,7 @@ set(SNAKE_INCLUDE
 	include/Launcher.hpp
 	include/Game.hpp
 	include/Snake.hpp
+	include/Defines.hpp
 )
 
 set(SNAKE_SOURCE

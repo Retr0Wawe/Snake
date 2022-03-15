@@ -8,9 +8,9 @@ namespace Game
 	class Snake
 	{
 	public:
-		Snake(){};
+		Snake();
 
-		~Snake(){};
+		~Snake();
 	public:
 		friend void Game::clear_field(const Snake& _snake);
 	private:
