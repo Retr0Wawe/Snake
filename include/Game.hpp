@@ -14,9 +14,8 @@ namespace Main
 
 	class Snake
 	{
-	public:
 		friend class Game;
-
+	public:
 		enum class eSnakeMove
 		{
 			MOVE_RIGHT, MOVE_LEFT, MOVE_UP, MOVE_DOWN
@@ -24,21 +23,22 @@ namespace Main
 	public:
 		Snake() noexcept;
 
-		Snake(int length, int _xpos, int _ypos) noexcept;
+		Snake(int _length, int _xpos, int _ypos, eSnakeMove _snake_direction) noexcept;
 
 		virtual ~Snake() noexcept;
 	public:
-		void move(field_array& _field) noexcept;
-
 		int get_length() const noexcept;
-	public:
-		eSnakeMove snake_direction = eSnakeMove::MOVE_RIGHT;
+
+		void move(Game& _game);
+	protected:
+		eSnakeMove snake_direction;
 		int snake_xpos, snake_ypos;
 		int snake_length;
 	};
 
 	class Game
 	{
+	public:
 		enum class eGameErrors
 		{
 			TEXTURE_NOT_LOAD = -1, SUCCES = 1
@@ -58,7 +58,9 @@ namespace Main
 		virtual void clear_field();
 
 		virtual void draw(sf::RenderWindow& _window);
-	private:
+
+		friend void Snake::move(Game& _game);
+	protected:
 		std::pair<sf::Texture, sf::Sprite> game_objects[2];
 		field_array field = { 0 };
 		Snake snake_obj;

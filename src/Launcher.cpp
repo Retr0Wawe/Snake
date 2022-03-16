@@ -13,7 +13,7 @@ namespace Main
 
 		pWindow = std::make_unique<sf::RenderWindow>(sf::VideoMode(window_width, window_height), _title);
 
-		if (static_cast<int>(game_obj.init()) < 0) {
+		if (int(game_obj.init()) < 0) {
 			return -1;
 		}
 
@@ -28,9 +28,13 @@ namespace Main
 					pWindow->close();
 				}
 			}
-			pWindow->clear(sf::Color(200, 250, 0));
+			my_snake.move(game_obj);
+			pWindow->clear(sf::Color(020, 100, 0));
+			
 			game_obj.draw(*pWindow);
 			pWindow->display();
+
+			sf::sleep(sf::milliseconds(render_delay));
 		}
 
 		return 0;
