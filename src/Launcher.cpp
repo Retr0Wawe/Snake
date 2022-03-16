@@ -1,19 +1,23 @@
 #include "Launcher.hpp"
 
-#include "Game.hpp"
 #include "Snake.hpp"
+#include "Game.hpp"
 
-namespace Game
+namespace Main
 {
 	int Launcher::start_game(const char* _title)
 	{
-		Game game_obj;
+		Snake my_snake;
+
+		Game game_obj(my_snake);
 
 		pWindow = std::make_unique<sf::RenderWindow>(sf::VideoMode(window_width, window_height), _title);
 
 		if (static_cast<int>(game_obj.init()) < 0) {
 			return -1;
 		}
+
+		game_obj.clear_field();
 
 		while (pWindow->isOpen())
 		{

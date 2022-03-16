@@ -4,7 +4,7 @@
 #include <SFML/Graphics.hpp>
 #include <memory>
 
-namespace Game 
+namespace Main
 {
 	class Launcher
 	{

@@ -1,7 +1,7 @@
 #ifndef _DEFINE_HPP_
 #define _DEFINE_HPP_
 
-namespace Game
+namespace Main
 {
 	constexpr int field_size_x = 35;
 	constexpr int field_size_y = 25;

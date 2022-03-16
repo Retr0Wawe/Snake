@@ -1,6 +1,6 @@
 #include "Launcher.hpp"
 
-using namespace Game;
+using namespace Main;
 
 int main()
 {
