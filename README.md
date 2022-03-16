@@ -1,2 +1,2 @@
 # Snake
-a simple snake game
+A simple snake game written for skill training
