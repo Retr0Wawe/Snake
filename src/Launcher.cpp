@@ -16,6 +16,8 @@ namespace Main
 		if (int(game_obj.init()) < 0) {
 			return -1;
 		}
+		
+		pWindow->setFramerateLimit(60);
 
 		game_obj.clear_field();
 

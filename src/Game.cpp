@@ -17,25 +17,25 @@ namespace Main
 	{
 		switch (snake_direction)
 		{
-		case Main::Snake::eSnakeMove::MOVE_RIGHT:
+		case Snake::eSnakeMove::MOVE_RIGHT:
 			snake_xpos++;
 			if (snake_xpos > field_size_x - 1) {
 				snake_xpos = 0;
 			}
 			break;
-		case Main::Snake::eSnakeMove::MOVE_LEFT:
+		case Snake::eSnakeMove::MOVE_LEFT:
 			snake_xpos--;
 			if (snake_xpos < 0) {
 				snake_xpos = field_size_x - 1;
 			}
 			break;
-		case Main::Snake::eSnakeMove::MOVE_UP:
+		case Snake::eSnakeMove::MOVE_UP:
 			snake_ypos--;
 			if (snake_ypos < 0) {
 				snake_ypos = field_size_y - 1;
 			}
 			break;
-		case Main::Snake::eSnakeMove::MOVE_DOWN:
+		case Snake::eSnakeMove::MOVE_DOWN:
 			snake_ypos++;
 			if (snake_ypos > field_size_y - 1) {
 				snake_xpos = 0;
