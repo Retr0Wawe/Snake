@@ -26,13 +26,13 @@ namespace Main
 			sf::Event event;
 			while (pWindow->pollEvent(event))
 			{
-				if (event.type == sf::Event::Closed) {
+				if (event.type == sf::Event::Closed)
 					pWindow->close();
-				}
 			}
 			my_snake.move(game_obj);
+			game_obj.handle_keyboard();
 			pWindow->clear(sf::Color(020, 100, 0));
-			
+
 			game_obj.draw(*pWindow);
 			pWindow->display();
 

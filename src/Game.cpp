@@ -2,9 +2,17 @@
 
 namespace Main
 {
-	Snake::Snake() noexcept : snake_length(3), snake_xpos(field_size_x / 2), 
+	Snake::Snake() noexcept : snake_length(10), snake_xpos(field_size_x / 2), 
 		snake_ypos(field_size_y / 2), snake_direction(eSnakeMove::MOVE_RIGHT)
 	{	}
+
+	Snake::Snake(const Snake& _snake)
+	{	
+		snake_direction = _snake.snake_direction;
+		snake_length = _snake.snake_length;
+		snake_xpos = _snake.snake_xpos;
+		snake_ypos = _snake.snake_ypos;
+	}
 
 	Snake::Snake(int _length, int _xpos, int _ypos, eSnakeMove _snake_direction = eSnakeMove::MOVE_RIGHT) noexcept :
 		 snake_length(_length), snake_xpos(_xpos), snake_ypos(_ypos), snake_direction(_snake_direction)
@@ -13,29 +21,41 @@ namespace Main
 	Snake::~Snake() noexcept
 	{	}
 
+	Snake& Snake::operator=(const Snake& _snake) noexcept
+	{
+		if (this != &_snake) {			
+			snake_direction = _snake.snake_direction;
+			snake_length = _snake.snake_length;
+			snake_xpos = _snake.snake_xpos;
+			snake_ypos = _snake.snake_ypos;
+		}
+
+		return *this;
+	}
+
 	void Snake::move(Game& _game)
 	{
-		switch (snake_direction)
+		switch (_game.snake_obj.snake_direction)
 		{
-		case Snake::eSnakeMove::MOVE_RIGHT:
+		case eSnakeMove::MOVE_RIGHT:
 			snake_xpos++;
 			if (snake_xpos > field_size_x - 1) {
 				snake_xpos = 0;
 			}
 			break;
-		case Snake::eSnakeMove::MOVE_LEFT:
+		case eSnakeMove::MOVE_LEFT:
 			snake_xpos--;
 			if (snake_xpos < 0) {
 				snake_xpos = field_size_x - 1;
 			}
 			break;
-		case Snake::eSnakeMove::MOVE_UP:
+		case eSnakeMove::MOVE_UP:
 			snake_ypos--;
 			if (snake_ypos < 0) {
 				snake_ypos = field_size_y - 1;
 			}
 			break;
-		case Snake::eSnakeMove::MOVE_DOWN:
+		case eSnakeMove::MOVE_DOWN:
 			snake_ypos++;
 			if (snake_ypos > field_size_y - 1) {
 				snake_xpos = 0;
@@ -69,16 +89,16 @@ namespace Main
 
 	Game::eGameErrors Game::init()
 	{
-		if (!game_objects[0].first.loadFromFile("none.png")) {
+		if (!cell_types[0].first.loadFromFile("none.png")) {
 			return eGameErrors::TEXTURE_NOT_LOAD;
 		}
 
-		if (!game_objects[1].first.loadFromFile("snake.png")) {
+		if (!cell_types[1].first.loadFromFile("snake.png")) {
 			return eGameErrors::TEXTURE_NOT_LOAD;
 		}
 
-		game_objects[0].second.setTexture(game_objects[0].first);
-		game_objects[1].second.setTexture(game_objects[1].first);
+		cell_types[0].second.setTexture(cell_types[0].first);
+		cell_types[1].second.setTexture(cell_types[1].first);
 
 		return eGameErrors::SUCCES;
 	}
@@ -103,14 +123,30 @@ namespace Main
 				switch (field[i][j])
 				{
 					case static_cast<int>(eFieldType::FIELD_CELL_NULL):
-						game_objects[0].second.setPosition(sf::Vector2f(float(i * cell_size), float(j * cell_size)));
-						_window.draw(game_objects[0].second);
+						cell_types[0].second.setPosition(sf::Vector2f(float(i * cell_size), float(j * cell_size)));
+						_window.draw(cell_types[0].second);
 						break;
 					default:
-						game_objects[1].second.setPosition(sf::Vector2f(float(i * cell_size), float(j * cell_size)));
-						_window.draw(game_objects[1].second);
+						cell_types[1].second.setPosition(sf::Vector2f(float(i * cell_size), float(j * cell_size)));
+						_window.draw(cell_types[1].second);
 				}
 			}
+		}
+	}
+
+	void Game::handle_keyboard() noexcept
+	{
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
+			snake_obj.snake_direction = Snake::eSnakeMove::MOVE_UP;
+		}
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
+			snake_obj.snake_direction = Snake::eSnakeMove::MOVE_DOWN;
+		}
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
+			snake_obj.snake_direction = Snake::eSnakeMove::MOVE_LEFT;
+		}
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
+			snake_obj.snake_direction = Snake::eSnakeMove::MOVE_RIGHT;
 		}
 	}
 }

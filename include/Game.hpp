@@ -23,9 +23,13 @@ namespace Main
 	public:
 		Snake() noexcept;
 
+		Snake(const Snake& _snake);
+
 		Snake(int _length, int _xpos, int _ypos, eSnakeMove _snake_direction) noexcept;
 
 		virtual ~Snake() noexcept;
+	public:
+		virtual Snake& operator=(const Snake& _snake) noexcept;
 	public:
 		int get_length() const noexcept;
 
@@ -55,13 +59,15 @@ namespace Main
 	public:
 		virtual eGameErrors init();
 
-		virtual void clear_field();
-
+		void handle_keyboard() noexcept;
+		
 		virtual void draw(sf::RenderWindow& _window);
 
 		friend void Snake::move(Game& _game);
+
+		void clear_field();
 	protected:
-		std::pair<sf::Texture, sf::Sprite> game_objects[2];
+		std::pair<sf::Texture, sf::Sprite> cell_types[2];
 		field_array field = { 0 };
 		Snake snake_obj;
 	};
