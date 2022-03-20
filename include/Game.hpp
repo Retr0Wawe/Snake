@@ -6,11 +6,12 @@
 #include <array>
 
 #include "Defines.hpp"
-#include "Snake.hpp"
 
 namespace Main
 {
 	using field_array = std::array<std::array<int, field_size_y>, field_size_x>;
+
+	class Game;		//declaration
 
 	class Snake
 	{

@@ -9,14 +9,12 @@ set(BUILD_SHARED_LIBS OFF)
 set(SNAKE_INCLUDE
 	include/Launcher.hpp
 	include/Game.hpp
-	include/Snake.hpp
 	include/Defines.hpp
 )
 
 set(SNAKE_SOURCE
 	src/Launcher.cpp
 	src/Game.cpp
-	src/Snake.cpp
 )
 
 add_executable(${PROJECT_NAME}

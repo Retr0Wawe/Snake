@@ -1,6 +1,5 @@
 #include "Launcher.hpp"
 
-#include "Snake.hpp"
 #include "Game.hpp"
 
 namespace Main

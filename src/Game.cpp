@@ -2,12 +2,12 @@
 
 namespace Main
 {
-	Snake::Snake() noexcept : snake_length(10), snake_xpos(field_size_x / 2), 
+	Snake::Snake() noexcept : snake_length(10), snake_xpos(field_size_x / 2),
 		snake_ypos(field_size_y / 2), snake_direction(eSnakeMove::MOVE_RIGHT)
 	{	}
 
 	Snake::Snake(const Snake& _snake)
-	{	
+	{
 		snake_direction = _snake.snake_direction;
 		snake_length = _snake.snake_length;
 		snake_xpos = _snake.snake_xpos;
@@ -15,7 +15,7 @@ namespace Main
 	}
 
 	Snake::Snake(int _length, int _xpos, int _ypos, eSnakeMove _snake_direction = eSnakeMove::MOVE_RIGHT) noexcept :
-		 snake_length(_length), snake_xpos(_xpos), snake_ypos(_ypos), snake_direction(_snake_direction)
+		snake_length(_length), snake_xpos(_xpos), snake_ypos(_ypos), snake_direction(_snake_direction)
 	{	}
 
 	Snake::~Snake() noexcept
@@ -23,7 +23,7 @@ namespace Main
 
 	Snake& Snake::operator=(const Snake& _snake) noexcept
 	{
-		if (this != &_snake) {			
+		if (this != &_snake) {
 			snake_direction = _snake.snake_direction;
 			snake_length = _snake.snake_length;
 			snake_xpos = _snake.snake_xpos;
