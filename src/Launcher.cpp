@@ -1,5 +1,4 @@
 #include "Launcher.hpp"
-
 #include "Game.hpp"
 
 namespace Main
@@ -25,8 +24,9 @@ namespace Main
 			sf::Event event;
 			while (pWindow->pollEvent(event))
 			{
-				if (event.type == sf::Event::Closed)
+				if (event.type == sf::Event::Closed) {
 					pWindow->close();
+				}
 			}
 			my_snake.move(game_obj);
 			game_obj.handle_keyboard();

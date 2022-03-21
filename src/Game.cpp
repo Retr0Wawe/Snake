@@ -57,9 +57,9 @@ namespace Main
 			break;
 		case eSnakeMove::MOVE_DOWN:
 			snake_ypos++;
-			if (snake_ypos > field_size_y - 1) {
-				snake_xpos = 0;
-			}
+			if (snake_ypos < 0) {
+				snake_ypos = field_size_y - 1;
+			} 
 			break;
 		default:
 			break;

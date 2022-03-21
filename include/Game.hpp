@@ -43,6 +43,8 @@ namespace Main
 
 	class Game
 	{
+		using game_objects = std::pair<sf::Texture, sf::Sprite>;
+		using game_event = sf::Event;
 	public:
 		enum class eGameErrors
 		{
@@ -66,10 +68,13 @@ namespace Main
 
 		friend void Snake::move(Game& _game);
 
+		void spawn_apple();
+
 		void clear_field();
 	protected:
-		std::pair<sf::Texture, sf::Sprite> cell_types[2];
+		game_objects cell_types[2];
 		field_array field = { 0 };
+		game_event event;
 		Snake snake_obj;
 	};
 }
